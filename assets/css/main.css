@@ -186,9 +186,9 @@ a:hover { color: var(--zhu); }
 /* ---------- 印章 ---------- */
 .seal {
   display: inline-grid;
-  grid-auto-flow: column;
   grid-template-columns: repeat(2, 1fr);
-  direction: rtl;
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
   gap: 2px;
   padding: 4px;
   background: linear-gradient(135deg, #B23A2E, #972F24);
@@ -201,6 +201,13 @@ a:hover { color: var(--zhu); }
   box-shadow: inset 0 0 7px rgba(60, 8, 4, .55), 0 2px 8px rgba(46, 42, 37, .22);
   user-select: none;
 }
+/* 四字朱印按传统右起竖读：大(右上) 顺(右下) 之(左上) 印(左下)。
+   不用 grid-auto-flow: column —— Chromium 对「列向自动流 + 显式列数」的组合
+   处理有偏差（实测四字被排成一行并溢出印框），显式指定每个字的格子最稳妥 */
+.seal i:nth-child(1) { grid-area: 1 / 2; }
+.seal i:nth-child(2) { grid-area: 2 / 2; }
+.seal i:nth-child(3) { grid-area: 1 / 1; }
+.seal i:nth-child(4) { grid-area: 2 / 1; }
 .seal i {
   font-style: normal;
   display: flex;
