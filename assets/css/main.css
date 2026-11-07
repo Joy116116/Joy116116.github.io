@@ -1362,10 +1362,18 @@ html.js .reveal.in {
   .nav-list a { padding: .8rem .1rem; font-size: 1.05rem; }
 
   .hero { height: clamp(540px, 78vh, 700px); }
+  /* 移动端：印章、标题、简介改为文档流内自然堆叠（此前均为绝对定位，
+     标题块 top 5.5rem 与简介 top 8.5rem 在竖屏上互相重叠） */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4.2rem 1.4rem 0;
+  }
   .hero-title-block {
-    top: 5.5rem;
-    right: 50%;
-    transform: translateX(50%);
+    position: static;
+    transform: none;
     flex-direction: column-reverse;
     gap: .9rem;
   }
@@ -1375,7 +1383,16 @@ html.js .reveal.in {
     letter-spacing: .18em;
     white-space: nowrap;
   }
-  .hero-intro { top: 8.5rem; max-width: 22rem; }
+  .hero-intro {
+    position: static;
+    margin-top: 1.5rem;
+    max-width: 24rem;
+    border-left: none;
+    border-top: 3px solid var(--zhu);
+    padding-left: 0;
+    padding-top: .9rem;
+    text-align: center;
+  }
   .hero-sub { font-size: 1.12rem; }
   .hero-note { letter-spacing: .12em; }
 

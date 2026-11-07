@@ -81,17 +81,12 @@ capitalizeListTitles = false
     pre = "识"
     weight = 3
   [[menus.main]]
-    name = "简历"
-    url = "/resume/"
-    pre = "简"
-    weight = 4
-  [[menus.main]]
     name = "归档"
     pageRef = "/archive"
     pre = "藏"
-    weight = 5
+    weight = 4
   [[menus.main]]
     name = "关于"
     pageRef = "/about"
     pre = "吾"
-    weight = 6
+    weight = 5
