@@ -1,0 +1,97 @@
+# 站点配置 —— 万类霜天竞自由
+# 修改作者名、简介等信息后，push 即可自动发布
+
+baseURL = "/"
+defaultContentLanguage = "zh"
+title = "大顺的旅行日志"
+timeZone = "Asia/Shanghai"
+hasCJKLanguage = true
+enableEmoji = true
+enableRobotsTXT = true
+summaryLength = 80
+pluralizeListTitles = false
+capitalizeListTitles = false
+
+[pagination]
+  pagerSize = 12
+
+# 分类体系：tags 是主题标签；region 是地区（知识库筛选用）
+[taxonomies]
+  tags = "tags"
+  region = "region"
+
+# 首页额外输出 JSON 搜索索引（站内搜索用）
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    style = "trac"
+
+[params]
+  # ↓↓↓ 请改成你自己的信息 ↓↓↓
+  author = "大顺"                           # 落款 / 页脚署名
+  subtitle = "一名导游的山水行记"
+  description = "大顺的旅行日志：一名导游的带团工作日志与景点知识库，沉淀讲解词与路上的见闻。"
+  keywords = ["导游", "带团日志", "景点知识", "讲解词", "旅行"]
+  footerQuote = "读万卷书 · 行万里路"       # 页脚题字
+  # ↑↑↑ 请改成你自己的信息 ↑↑↑
+
+  # 字体（国内可访问的 CDN，若加载失败会自动回退系统楷体/宋体）
+  fontHeadingURL = "https://fastly.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css"
+  fontBodyURL = "https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;600&display=swap"
+
+  # 首页 hero 一句话（竖排大标题下方的小字）
+  heroNote = "记带团的日子，也记山河的学问"
+
+  # Giscus 评论（基于 GitHub Discussions，默认关闭）
+  # 开启方法见 README「开启评论」一节；留空则不渲染评论区
+  [params.giscus]
+    repo = ""
+    repoId = ""
+    category = "Announcements"
+    categoryId = ""
+
+[services]
+  [services.rss]
+    limit = 20
+
+# 主导航（pre 为栏目单字印章）
+[menus]
+  [[menus.main]]
+    name = "首页"
+    pageRef = "/"
+    pre = "卷"
+    weight = 1
+  [[menus.main]]
+    name = "日志"
+    pageRef = "/logs"
+    pre = "行"
+    weight = 2
+  [[menus.main]]
+    name = "知识库"
+    pageRef = "/knowledge"
+    pre = "识"
+    weight = 3
+  [[menus.main]]
+    name = "简历"
+    url = "/resume/"
+    pre = "简"
+    weight = 4
+  [[menus.main]]
+    name = "归档"
+    pageRef = "/archive"
+    pre = "藏"
+    weight = 5
+  [[menus.main]]
+    name = "关于"
+    pageRef = "/about"
+    pre = "吾"
+    weight = 6

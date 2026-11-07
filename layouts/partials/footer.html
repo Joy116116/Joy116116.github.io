@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  {{- partial "mountains.html" (dict "variant" "footer") -}}
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      {{- partial "seal.html" (dict "text" "大顺纪行" "class" "seal-md") -}}
+      <div class="footer-quote v-text">{{ site.Params.footerQuote }}</div>
+    </div>
+    <nav class="footer-nav" aria-label="页脚导航">
+      {{- range site.Menus.main }}
+      <a href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL }}{{ end }}">{{ .Name }}</a>
+      {{- end }}
+    </nav>
+    <div class="footer-meta">
+      <span>© {{ now.Year }} {{ site.Params.author }} · {{ site.Title }}</span>
+      <span class="footer-links">
+        <a href="{{ `index.xml` | relURL }}">RSS</a>
+        <a href="{{ `sitemap.xml` | relURL }}">站点地图</a>
+        <span>由 Hugo 驱动 · 托于 GitHub Pages</span>
+      </span>
+    </div>
+  </div>
+</footer>

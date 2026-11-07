@@ -1,0 +1,43 @@
+{{ define "main" }}
+<header class="page-header">
+  <div class="wrap page-title-row">
+    {{ partial "chapter-seal.html" (dict "char" "行" "size" "lg") }}
+    <div class="page-titles">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+    </div>
+    <span class="section-en">JOURNAL</span>
+  </div>
+</header>
+
+<div class="wrap timeline">
+  {{- $pag := .Paginate .Pages }}
+  {{- range $pag.Pages.GroupByDate "2006 年" }}
+  <section class="tl-group">
+    <h2 class="tl-year"><span>{{ .Key }}</span></h2>
+    {{- range .Pages }}
+    <article class="tl-item reveal">
+      <div class="tl-dot" aria-hidden="true"></div>
+      <div class="tl-date">{{ .Date.Format "01 / 02" }}</div>
+      <div class="tl-card">
+        <h3 class="tl-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p class="tl-meta">
+          {{- with .Params.location }}<span>{{ partial "icon.html" "pin" }}{{ . }}</span>{{ end -}}
+          {{- with .Params.days }}<span>{{ . }} 天行程</span>{{ end -}}
+          {{- with .Params.weather }}<span>{{ partial "icon.html" "cloud" }}{{ . }}</span>{{ end -}}
+        </p>
+        <p class="tl-summary">{{ .Summary | plainify | chomp | truncate 64 }}</p>
+        {{- with .Params.tags }}
+        <div class="card-tags">
+          {{- range . }}<a class="tag-chip" href="{{ printf `/tags/%s` (. | urlize) | relURL }}">#{{ . }}</a>{{ end -}}
+        </div>
+        {{- end }}
+      </div>
+    </article>
+    {{- end }}
+  </section>
+  {{- end }}
+</div>
+
+{{- if gt $pag.TotalPages 1 }}{{ partial "pagination.html" $pag }}{{ end }}
+{{ end }}

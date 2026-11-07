@@ -1,0 +1,12 @@
+{{- $chars := strings.RuneCount (replaceRE `\s` "" .Plain) -}}
+<div class="article-meta">
+  <span class="meta-item">{{ partial "icon.html" "calendar" }}{{ .Date.Format "2006 年 01 月 02 日" }}</span>
+  {{- if gt $chars 0 }}
+  <span class="meta-item">{{ partial "icon.html" "clock" }}约 {{ math.Ceil (div $chars 500.0) }} 分钟</span>
+  {{- end -}}
+  {{- with .Params.location }}<span class="meta-item">{{ partial "icon.html" "pin" }}{{ . }}</span>{{ end -}}
+  {{- with .Params.days }}<span class="meta-item">{{ partial "icon.html" "route" }}{{ . }} 天行程</span>{{ end -}}
+  {{- with .Params.weather }}<span class="meta-item">{{ partial "icon.html" "cloud" }}{{ . }}</span>{{ end -}}
+  {{- with .Params.spot }}<span class="meta-item">{{ partial "icon.html" "mountain" }}{{ . }}</span>{{ end -}}
+  {{- with .Params.era }}<span class="meta-item meta-era">{{ . }}</span>{{ end -}}
+</div>

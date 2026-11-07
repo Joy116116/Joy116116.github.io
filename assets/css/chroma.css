@@ -1,0 +1,16 @@
+/* 代码高亮（纸墨配色，配合深色代码块） */
+.chroma { background: #262B31; color: #D8D3C6; }
+.chroma .err { color: #D06055; }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr { color: #C29A7B; }
+.chroma .kt { color: #8FB0C6; }
+.chroma .na, .chroma .nc, .chroma .nd, .chroma .nf, .chroma .fm { color: #8FB0C6; }
+.chroma .nb, .chroma .bp { color: #9BB8C6; }
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2,
+.chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color: #A8BC8C; }
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: #C8A06B; }
+.chroma .o, .chroma .ow { color: #B5AE9F; }
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs { color: #7E796E; font-style: italic; }
+.chroma .gd { color: #D06055; }
+.chroma .gi { color: #A8BC8C; }
+.chroma .gu { color: #837E72; }
+.chroma .w { color: #B5AE9F; }

@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="notfound">
+  {{ partial "mountains.html" (dict "variant" "mini") }}
+  <div class="notfound-inner">
+    <p class="notfound-code">404</p>
+    <h1 class="notfound-title v-text">云深不知处</h1>
+    <p class="notfound-desc">你要找的这一页，已被云雾收走了。</p>
+    <div class="notfound-actions">
+      <a class="btn" href="{{ site.Home.RelPermalink }}">回到首页</a>
+      <a class="btn btn-ghost" href="{{ (site.GetPage `search`).RelPermalink }}">搜一搜</a>
+    </div>
+  </div>
+</section>
+{{ end }}

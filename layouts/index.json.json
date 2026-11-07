@@ -1,0 +1,19 @@
+[
+{{- $pages := where site.RegularPages "Params.excludeSearch" "ne" true }}
+{{- range $i, $p := $pages }}
+{{- if $i }},{{ end }}
+  {
+    "title": {{ $p.Title | jsonify }},
+    "url": {{ $p.RelPermalink | jsonify }},
+    "section": {{ $p.Section | jsonify }},
+    "date": {{ $p.Date.Format "2006-01-02" | jsonify }},
+    "summary": {{ $p.Summary | plainify | chomp | jsonify }},
+    "content": {{ $p.Plain | jsonify }},
+    "tags": {{ $p.Params.tags | jsonify }},
+    "region": {{ $p.Params.region | jsonify }},
+    "spot": {{ $p.Params.spot | jsonify }},
+    "location": {{ $p.Params.location | jsonify }},
+    "era": {{ $p.Params.era | jsonify }}
+  }
+{{- end }}
+]

@@ -1,0 +1,60 @@
+{{- $title := site.Title -}}
+{{- if not .IsHome -}}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- $desc := .Description | default (cond .IsPage (.Summary | plainify | chomp | truncate 150) "") | default site.Params.description -}}
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="keywords" content="{{ delimit site.Params.keywords `,` }}">
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="theme-color" content="#EFE7D2">
+<meta name="color-scheme" content="light dark">
+{{- if not .IsHome }}<link rel="canonical" href="{{ .Permalink }}">{{ end -}}
+
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format `2006-01-02T15:04:05Z07:00` }}">
+<meta property="article:author" content="{{ site.Params.author }}">
+{{- end -}}
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="{{ `favicon.svg` | relURL }}" type="image/svg+xml">
+{{- with .OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">
+{{- end }}
+
+{{/* 主题色先于渲染确定，避免深色模式闪白 */}}
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name=theme-color]');if(m){m.setAttribute('content',t==='dark'?'#1B2422':'#EFE7D2');}}catch(e){}})();
+</script>
+
+{{/* 字体：非阻塞加载，失败自动回退系统楷体 / 宋体 */}}
+{{- with site.Params.fontHeadingURL }}
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="{{ . }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ . }}"></noscript>
+{{- end -}}
+{{- with site.Params.fontBodyURL }}
+<link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+<link rel="stylesheet" href="{{ . }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ . }}"></noscript>
+{{- end }}
+
+{{- $css := slice (resources.Get `css/main.css`) (resources.Get `css/chroma.css`) | resources.Concat `css/bundle.css` | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+{{- if .IsPage }}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ .Title | jsonify }},"description":{{ $desc | jsonify }},"datePublished":{{ .Date.Format `2006-01-02` | jsonify }},"dateModified":{{ .Lastmod.Format `2006-01-02` | jsonify }},"author":{"@type":"Person","name":{{ site.Params.author | jsonify }}},"mainEntityOfPage":{{ .Permalink | jsonify }}}
+</script>
+{{- else if .IsHome }}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":{{ site.Title | jsonify }},"description":{{ site.Params.description | jsonify }},"author":{"@type":"Person","name":{{ site.Params.author | jsonify }}}}
+</script>
+{{- end }}
+</head>

@@ -1,0 +1,6 @@
+{{- /* 分页：partial "pagination.html" $pag */ -}}
+<nav class="pagination wrap" aria-label="分页">
+  {{- with .PrevLink }}<a class="page-btn" href="{{ . }}">{{ partial "icon.html" "arrow-left" }}上一页</a>{{ else }}<span class="page-btn disabled">上一页</span>{{ end -}}
+  <span class="page-info">{{ .PageNumber }} / {{ .TotalPages }}</span>
+  {{- with .NextLink }}<a class="page-btn" href="{{ . }}">下一页{{ partial "icon.html" "arrow-right" }}</a>{{ else }}<span class="page-btn disabled">下一页</span>{{ end -}}
+</nav>

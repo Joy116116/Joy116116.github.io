@@ -1,0 +1,6 @@
+{{- /* 印章：传入 dict text class；四字印按传统右起竖读排布 */ -}}
+{{- $text := .text | default "霜天" -}}
+{{- $class := .class | default "" -}}
+<span class="seal {{ $class }}" aria-hidden="true">
+  {{- range $i, $ch := split $text "" }}<i>{{ $ch }}</i>{{ end -}}
+</span>

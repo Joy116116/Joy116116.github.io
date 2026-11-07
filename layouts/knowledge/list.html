@@ -1,0 +1,40 @@
+{{ define "main" }}
+<header class="page-header">
+  <div class="wrap page-title-row">
+    {{ partial "chapter-seal.html" (dict "char" "识" "size" "lg") }}
+    <div class="page-titles">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+    </div>
+    <span class="section-en">KNOWLEDGE</span>
+  </div>
+</header>
+
+<div class="wrap knowledge-wrap">
+  <div class="filters" aria-label="按地区与主题筛选">
+    <div class="filter-row">
+      <span class="filter-label">地区</span>
+      <div class="filter-chips" data-filter="region">
+        <button type="button" class="chip active" data-value="">全部</button>
+        {{- range site.Taxonomies.region.Alphabetical }}
+        <button type="button" class="chip" data-value="{{ .Name }}">{{ .Name }}</button>
+        {{- end }}
+      </div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">主题</span>
+      <div class="filter-chips" data-filter="tags">
+        <button type="button" class="chip active" data-value="">全部</button>
+        {{- range site.Taxonomies.tags.Alphabetical }}
+        <button type="button" class="chip" data-value="{{ .Name | lower }}">{{ .Name }}</button>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid" id="card-grid">
+    {{- range .Pages.ByDate }}{{ partial "card.html" . }}{{ end }}
+  </div>
+  <p class="filter-empty" id="filter-empty" hidden>云深不知处——没有符合条件的文章，换个筛选试试。</p>
+</div>
+{{ end }}

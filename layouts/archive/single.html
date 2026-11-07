@@ -1,0 +1,30 @@
+{{ define "main" }}
+<header class="page-header">
+  <div class="wrap page-title-row">
+    {{ partial "chapter-seal.html" (dict "char" "藏" "size" "lg") }}
+    <div class="page-titles">
+      <h1 class="page-title">{{ .Title }}</h1>
+      <p class="page-desc">全部文章，按年份收藏。</p>
+    </div>
+    <span class="section-en">ARCHIVE</span>
+  </div>
+</header>
+
+<div class="wrap archive">
+  {{- $pages := where site.RegularPages "Type" "in" (slice "logs" "knowledge") }}
+  {{- range $pages.GroupByDate "2006 年" }}
+  <section class="archive-year reveal">
+    <h2 class="archive-year-title">{{ .Key }}</h2>
+    <ul class="archive-list">
+      {{- range .Pages }}
+      <li class="archive-item">
+        <time class="archive-date" datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "01-02" }}</time>
+        <span class="archive-badge badge-{{ .Section }}">{{ if eq .Section "logs" }}日志{{ else }}知识{{ end }}</span>
+        <a class="archive-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+</div>
+{{ end }}

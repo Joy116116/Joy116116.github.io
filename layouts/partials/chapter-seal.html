@@ -1,0 +1,4 @@
+{{- /* 单字朱印：栏目图腾（取法《千年调》单字印章导航） */ -}}
+{{- $char := .char | default "卷" -}}
+{{- $size := .size | default "sm" -}}
+<span class="ch-seal ch-seal-{{ $size }}" aria-hidden="true">{{ $char }}</span>

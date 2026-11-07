@@ -1,0 +1,25 @@
+{{ define "main" }}
+<header class="page-header">
+  <div class="wrap page-title-row">
+    {{ partial "chapter-seal.html" (dict "char" "签" "size" "lg") }}
+    <div class="page-titles">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+    </div>
+    <span class="section-en">TAGS</span>
+  </div>
+</header>
+
+{{/* 分类总览页（/tags/、/region/）：词云式展示 */}}
+{{- if eq .Kind "taxonomy" }}
+<div class="wrap tag-cloud">
+  {{- range .Data.Terms.ByCount }}
+  <a class="tag-chip tag-lg" href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}<span class="tag-count">{{ len .Pages }}</span></a>
+  {{- end }}
+</div>
+{{- else }}
+<div class="wrap card-grid">
+  {{- range .Pages }}{{ partial "card.html" . }}{{ end }}
+</div>
+{{- end }}
+{{ end }}

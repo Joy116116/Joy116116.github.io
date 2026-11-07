@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header class="page-header">
+  <div class="wrap page-title-row">
+    {{ partial "chapter-seal.html" (dict "char" "寻" "size" "lg") }}
+    <div class="page-titles">
+      <h1 class="page-title">{{ .Title }}</h1>
+      <p class="page-desc">检索全部日志与景点知识。</p>
+    </div>
+    <span class="section-en">SEARCH</span>
+  </div>
+</header>
+
+<div class="wrap search-wrap">
+  <div class="search-box">
+    {{ partial "icon.html" "search" }}
+    <input id="search-input" type="search" placeholder="如：爱晚亭 / 张家界 / 讲解词" autocomplete="off" autofocus aria-label="搜索关键词">
+  </div>
+  <p class="search-status" id="search-status">输入关键词，实时检索全站。</p>
+  <ul class="search-results" id="search-results" aria-live="polite"></ul>
+</div>
+
+<script>window.SEARCH_INDEX_URL = {{ "index.json" | relURL }};</script>
+<script src="{{ (resources.Get `js/search.js` | minify | fingerprint).RelPermalink }}" defer></script>
+{{ end }}

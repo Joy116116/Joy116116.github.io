@@ -1,0 +1,35 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">
+      {{- partial "seal.html" (dict "text" "大顺纪行" "class" "seal-sm") -}}
+      <span class="brand-name">{{ site.Title }}</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="主导航">
+      <ul class="nav-list">
+        {{- range site.Menus.main }}
+        <li>
+          <a href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL }}{{ end }}"
+             {{- if or ($.IsMenuCurrent `main` .) ($.HasMenuCurrent `main` .) }} class="active" aria-current="page"{{ end }}>
+            {{- with .Pre }}{{ partial "chapter-seal.html" (dict "char" . "size" "sm") }}{{ end }}<span class="nav-name">{{ .Name }}</span>
+          </a>
+        </li>
+        {{- end }}
+        <li>
+          <a class="nav-search" href="{{ (site.GetPage `search`).RelPermalink }}" aria-label="站内搜索">
+            {{- partial "icon.html" "search" -}}<span class="nav-search-label">搜索</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深浅主题">
+        {{- partial "icon.html" "sun" -}}{{- partial "icon.html" "moon" -}}
+      </button>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

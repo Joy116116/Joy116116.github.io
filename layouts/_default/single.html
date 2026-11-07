@@ -1,0 +1,52 @@
+{{ define "main" }}
+{{- $hasTOC := findRE `<li` .TableOfContents 1 -}}
+<article class="article article-{{ .Section }}">
+  <header class="article-header">
+    <div class="wrap">
+      <div class="article-kicker">
+        {{- $sealMap := dict "logs" "行" "knowledge" "识" -}}
+        {{- $char := .Params.seal | default (index $sealMap .Section) | default "文" -}}
+        {{ partial "chapter-seal.html" (dict "char" $char "size" "sm") }}
+        <span>{{ if eq .Section "logs" }}日志{{ else if eq .Section "knowledge" }}知识库{{ else }}文章{{ end }}</span>
+      </div>
+      <h1 class="article-title">{{ .Title }}</h1>
+      {{ partial "article-meta.html" . }}
+    </div>
+  </header>
+
+  <div class="wrap article-layout{{ if not $hasTOC }} no-toc{{ end }}">
+    {{- with $hasTOC }}
+    <aside class="toc-block" aria-label="文章目录">
+      <div class="toc-title">{{ partial "icon.html" "book" }}<span>目录</span></div>
+      {{ $.TableOfContents }}
+    </aside>
+    {{- end }}
+
+    <div class="article-content">
+      {{ .Content }}
+
+      {{- with .Params.sources }}
+      <div class="article-sources">
+        <h2 class="aside-heading">资料来源</h2>
+        <ul>
+          {{- range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+      {{- end }}
+
+      {{- with .Params.tags }}
+      <div class="article-tags">
+        {{- range . }}<a class="tag-chip" href="{{ printf `/tags/%s` (. | urlize) | relURL }}">#{{ . }}</a>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+  </div>
+
+  <nav class="wrap article-pn" aria-label="上下篇">
+    {{- with .PrevInSection }}<a class="pn-link pn-prev" href="{{ .RelPermalink }}"><span class="pn-label">{{ partial "icon.html" "arrow-left" }}上一篇</span><span class="pn-title">{{ .Title }}</span></a>{{ else }}<span class="pn-link pn-empty"></span>{{ end -}}
+    {{- with .NextInSection }}<a class="pn-link pn-next" href="{{ .RelPermalink }}"><span class="pn-label">下一篇{{ partial "icon.html" "arrow-right" }}</span><span class="pn-title">{{ .Title }}</span></a>{{ else }}<span class="pn-link pn-empty"></span>{{ end -}}
+  </nav>
+
+  {{- partial "comments.html" . }}
+</article>
+{{ end }}

@@ -1,0 +1,20 @@
+{{- /* Markdown 图片钩子：页面资源自动压缩为 webp；外链直通；title 作图注 */ -}}
+{{- $dest := .Destination -}}
+{{- $alt := .PlainText -}}
+{{- $cap := .Title -}}
+{{- $res := $.Page.Resources.GetMatch $dest -}}
+{{- if $res }}
+  {{- if eq $res.ResourceType "image" }}
+    {{- $img := $res -}}
+    {{- if ne $res.MediaType.SubType "svg" }}{{ $img = $res.Resize "1200x webp q82" }}{{ end -}}
+    <figure class="fig">
+      <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+      {{- with $cap }}<figcaption>{{ . }}</figcaption>{{ end -}}
+    </figure>
+  {{- end }}
+{{- else }}
+  <figure class="fig">
+    <img src="{{ $dest | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    {{- with $cap }}<figcaption>{{ . }}</figcaption>{{ end -}}
+  </figure>
+{{- end }}

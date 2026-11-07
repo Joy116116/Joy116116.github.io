@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{{- partial "head.html" . -}}
+<body>
+<div class="site-backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" focusable="false">
+    <path class="sb-far" d="M0,300 C120,262 220,286 340,272 C460,258 540,288 660,276 C780,264 870,292 990,278 C1110,264 1240,296 1330,282 C1380,274 1420,282 1440,278 L1440,420 L0,420 Z"/>
+    <path class="sb-mid" d="M0,346 C100,316 190,336 300,326 C410,316 490,340 600,330 C710,320 800,344 910,334 C1020,324 1150,348 1260,336 C1340,328 1400,338 1440,334 L1440,420 L0,420 Z"/>
+    <path class="sb-near" d="M0,384 C120,364 230,378 360,370 C490,362 600,380 730,372 C860,364 990,382 1120,372 C1240,364 1360,378 1440,372 L1440,420 L0,420 Z"/>
+  </svg>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">跳到正文</a>
+
+{{- partial "header.html" . -}}
+
+<main id="main">
+{{- block "main" . }}{{ end -}}
+</main>
+
+{{- partial "footer.html" . -}}
+
+<script src="{{ (resources.Get `js/main.js` | minify | fingerprint).RelPermalink }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大顺 · 研学导游 | 在线简历</title>
+<meta name="description" content="持证导游大顺的在线简历：长短线研学团带队经验，可讲解三星堆、熊猫基地、杜甫草堂、武侯祠、都江堰、青城山，含川西户外团带队经历。">
+<!--
+  ══════════════════════════════════════════════════════
+  在线简历（Notion 风格）· 部署后访问地址：/resume/
+  使用前请替换以下 TODO 项：
+  1. 邮箱：搜索 your-email@example.com
+  2. 微信号：搜索 your-wechat-id
+  3. 头像：把照片放至 static/images/avatar.jpg，
+     然后用 <img> 替换 .avatar 内的 SVG 占位
+  4. 经历与教育起止年份：搜索 20XX
+  ══════════════════════════════════════════════════════
+-->
+<style>
+  :root{
+    --ink:#37352f;          /* Notion 正文墨色 */
+    --ink-2:#4b4a47;
+    --sec:#787774;          /* 次级文字 */
+    --faint:#9b9a97;
+    --line:#e9e9e7;         /* 分隔线 */
+    --gray-1:#f7f7f5;       /* callout 底色 */
+    --gray-2:#f1f1ef;       /* 图标底 / 药丸底 */
+    --accent:#2f8b74;       /* 点缀：研学绿 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",
+      "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:#ffffff;color:var(--ink);font-size:16px;line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ── 顶部封面大图（Notion cover 风格，通栏） ── */
+  .cover{
+    height:250px;
+    background:url("cover.jpg") center 55% / cover no-repeat;
+    print-color-adjust:exact;-webkit-print-color-adjust:exact;
+  }
+
+  .page{max-width:720px;margin:0 auto;padding:0 24px 64px}
+
+  /* ── 头像与姓名（头像压在封面下缘，Notion 页面图标式） ── */
+  .hero{text-align:center;padding-top:0}
+  .avatar{
+    width:96px;height:96px;border-radius:50%;margin:-52px auto 16px;overflow:hidden;
+    border:3px solid #fff;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18);
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero h1{font-size:40px;font-weight:700;letter-spacing:.5px}
+  .hero .tagline{margin-top:6px;font-size:16px;color:var(--ink-2)}
+  .hero .tagline b{color:var(--ink);font-weight:600}
+  .contact-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;
+    margin-top:14px;font-size:14.5px;color:var(--sec);
+  }
+  .contact-row a{color:var(--sec);text-decoration:none;border-bottom:1px solid transparent}
+  .contact-row a:hover{color:var(--ink);border-bottom-color:var(--faint)}
+
+  /* ── callout 引言框 ── */
+  .callout{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--gray-1);border-radius:6px;padding:16px 18px;margin-top:30px;
+    font-size:15.5px;color:var(--ink-2);
+  }
+  .callout .ci{font-size:22px;line-height:1.4;flex:none}
+
+  /* ── 分区 ── */
+  section{margin-top:44px}
+  h2{font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .divider{border:none;border-top:1px solid var(--line);margin:26px 0 0}
+
+  /* ── 经历条目 ── */
+  .entry{display:flex;gap:16px;margin-top:24px}
+  .entry-icon{
+    flex:none;width:46px;height:46px;border-radius:8px;background:var(--gray-2);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+  }
+  .entry-body{flex:1;min-width:0}
+  .entry-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .entry-title{font-weight:600;font-size:16.5px}
+  .entry-title span{color:var(--sec);font-weight:400}
+  .entry-date{font-size:13.5px;color:var(--sec);white-space:nowrap}
+  .entry-org{font-size:14px;color:var(--sec);margin-top:2px}
+  .entry ul{margin:8px 0 0 22px}
+  .entry li{font-size:15.5px;margin:4px 0}
+
+  /* ── 景点卡片 ── */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .card{
+    border:1px solid var(--line);border-radius:8px;padding:14px 16px;
+    transition:background .15s,border-color .15s;
+  }
+  .card:hover{background:var(--gray-1);border-color:#d3d1cb}
+  .card .ce{font-size:22px}
+  .card .cn{font-weight:600;margin-top:6px;font-size:15.5px}
+  .card .cd{font-size:13px;color:var(--sec);margin-top:2px}
+
+  /* ── 合作机构药丸 ── */
+  .pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+  .pill{
+    background:var(--gray-2);border-radius:999px;padding:5px 16px;
+    font-size:14px;color:var(--ink-2);
+  }
+
+  /* ── 技能 ── */
+  .skills{margin-top:18px}
+  .skill-row{display:flex;gap:12px;margin-top:14px;font-size:15.5px}
+  .skill-row b{flex:none;width:96px;font-weight:600}
+  .skill-row p{color:var(--ink-2)}
+
+  /* ── 证书与语言 ── */
+  .cert-list{margin-top:18px}
+  .cert{
+    display:flex;gap:12px;align-items:flex-start;margin-top:14px;
+  }
+  .cert .ci{flex:none;width:38px;height:38px;border-radius:8px;background:var(--gray-2);
+    display:flex;align-items:center;justify-content:center;font-size:18px}
+  .cert .ct{font-weight:600;font-size:15.5px}
+  .cert .cd{font-size:14px;color:var(--sec);margin-top:1px}
+
+  /* ── 联系 ── */
+  .contact-box{
+    background:var(--gray-1);border-radius:8px;padding:20px 22px;margin-top:22px;
+    font-size:15.5px;color:var(--ink-2);
+  }
+  .contact-box .row{display:flex;gap:10px;margin-top:8px}
+  .contact-box .row:first-of-type{margin-top:0}
+  .contact-box a{color:var(--accent);text-decoration:none;border-bottom:1px solid #bcd9cf}
+  .contact-box a:hover{border-bottom-color:var(--accent)}
+
+  footer{
+    margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+    text-align:center;font-size:13px;color:var(--faint);
+  }
+  footer a{color:var(--sec);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+
+  @media (max-width:560px){
+    .cover{height:160px}
+    .avatar{margin-top:-40px}
+    .hero h1{font-size:32px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .skill-row{flex-direction:column;gap:2px}
+    .skill-row b{width:auto}
+  }
+  @media print{
+    body{font-size:13px}
+    .cover{height:180px}
+    .page{padding:0;max-width:none}
+    section{margin-top:26px}
+    .card,.entry,.cert{break-inside:avoid}
+    footer{margin-top:28px}
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部封面大图：Notion cover 风格，图片在 static/resume/cover.jpg（Unsplash 雪山冰川，同参考模板封面） -->
+<div class="cover" role="img" aria-label="雪山风景封面图"></div>
+
+<div class="page">
+
+  <!-- 头像：默认为线稿风占位插画，替换方法见文件头注释 -->
+  <header class="hero">
+    <div class="avatar" aria-label="头像">
+      <!-- TODO: 替换为真实照片 <img src="/images/avatar.jpg" alt="大顺"> -->
+      <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+        <circle cx="48" cy="48" r="46" stroke="#e9e9e7"/>
+        <path d="M20 66 L38 40 L50 56 L60 44 L76 66" stroke="#37352f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="62" cy="32" r="6.5" stroke="#37352f" stroke-width="1.6"/>
+        <path d="M14 70 C 34 76, 62 76, 82 70" stroke="#37352f" stroke-width="1.1" stroke-linecap="round" opacity=".4"/>
+      </svg>
+    </div>
+    <h1>大顺</h1>
+    <p class="tagline"><b>持证导游</b> ｜ 研学带队 · 行程讲解 · 川西户外</p>
+    <div class="contact-row">
+      <span>📍 四川 · 成都</span>
+      <a href="mailto:your-email@example.com">📧 your-email@example.com</a>
+      <span>💬 微信：your-wechat-id</span>
+    </div>
+
+    <div class="callout">
+      <span class="ci">🎯</span>
+      <div>
+        旅游管理专业出身的持证导游，长期在成都及川西地区带团，覆盖<b>长线研学团、短线研学团、普通行程团与川西户外团</b>。可独立完成三星堆、熊猫基地、杜甫草堂、武侯祠、都江堰、青城山等成都核心景点的深度讲解，熟悉研学团队从行程执行、课程配合到安全管理的全流程服务，目前正备考英文导游资格。
+      </div>
+    </div>
+  </header>
+
+  <!-- 带团经历 -->
+  <section id="experience">
+    <h2>💼 带团经历</h2>
+
+    <div class="entry">
+      <div class="entry-icon">🎒</div>
+      <div class="entry-body">
+        <div class="entry-head">
+          <div class="entry-title">研学团带队 <span>— 长线 / 短线研学团</span></div>
+          <div class="entry-date">20XX — 至今</div>
+        </div>
+        <div class="entry-org">合作机构：商旅 / 觉晓 / 三人行 / 研途 / 锦途 / 锐杰</div>
+        <ul>
+          <li>独立承接长线、短线研学团，负责行程执行、景点讲解、研学任务组织与学员安全管理</li>
+          <li>围绕三星堆、武侯祠、都江堰等研学目的地开展主题讲解，把古蜀文明、三国文化、水利工程等知识点与研学课程目标结合</li>
+          <li>按机构研学方案组织团队任务与互动环节，配合带队老师完成教学目标，及时向机构反馈团队执行情况</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon">🏔️</div>
+      <div class="entry-body">
+        <div class="entry-head">
+          <div class="entry-title">普通行程团 / 川西户外团带队 <span>— 多家旅行社</span></div>
+          <div class="entry-date">20XX — 至今</div>
+        </div>
+        <ul>
+          <li>承接成都及周边普通行程团的全流程接待与讲解服务，积累了扎实的团队沟通与行程协调经验</li>
+          <li>带领川西户外团执行线路计划，负责途中安全管控与突发状况处理，保障团队行程顺利推进</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 可讲解景点 -->
+  <section id="attractions">
+    <h2>🏞️ 可讲解景点</h2>
+    <div class="cards">
+      <div class="card"><div class="ce">🏛️</div><div class="cn">三星堆</div><div class="cd">古蜀文明 · 青铜器</div></div>
+      <div class="card"><div class="ce">🐼</div><div class="cn">熊猫基地</div><div class="cd">大熊猫保护研学</div></div>
+      <div class="card"><div class="ce">📖</div><div class="cn">杜甫草堂</div><div class="cd">唐诗 · 杜甫生平</div></div>
+      <div class="card"><div class="ce">🏮</div><div class="cn">武侯祠</div><div class="cd">三国文化 · 锦里</div></div>
+      <div class="card"><div class="ce">🌊</div><div class="cn">都江堰</div><div class="cd">水利工程 · 李冰</div></div>
+      <div class="card"><div class="ce">⛰️</div><div class="cn">青城山</div><div class="cd">道教名山 · 前山后山</div></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 核心技能 -->
+  <section id="skills">
+    <h2>🧭 核心技能</h2>
+    <div class="skills">
+      <div class="skill-row"><b>研学带队</b><p>长线、短线研学团完整带队经验，熟悉行程执行、研学任务组织与学员全程管理</p></div>
+      <div class="skill-row"><b>景点讲解</b><p>独立讲解成都核心景区，讲解兼顾知识性与趣味性，贴合研学课程目标</p></div>
+      <div class="skill-row"><b>户外带队</b><p>川西户外团带队经验，熟悉川西线路组织、行车衔接与户外突发情况处理</p></div>
+      <div class="skill-row"><b>机构协作</b><p>与多家旅行社及研学机构稳定合作，熟悉不同机构研学方案与执行标准</p></div>
+    </div>
+
+    <div class="pills" aria-label="合作机构">
+      <span class="pill">商旅</span><span class="pill">觉晓</span><span class="pill">三人行</span>
+      <span class="pill">研途</span><span class="pill">锦途</span><span class="pill">锐杰</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 教育背景 -->
+  <section id="education">
+    <h2>🎓 教育背景</h2>
+
+    <div class="entry">
+      <div class="entry-icon">🏦</div>
+      <div class="entry-body">
+        <div class="entry-head">
+          <div class="entry-title">西南财经大学 <span>— 会计专业</span></div>
+          <div class="entry-date">20XX — 20XX</div>
+        </div>
+        <div class="entry-org">成人教育本科（专升本）</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon">🏫</div>
+      <div class="entry-body">
+        <div class="entry-head">
+          <div class="entry-title">四川工程职业技术学院 <span>— 旅游管理</span></div>
+          <div class="entry-date">20XX — 20XX</div>
+        </div>
+        <div class="entry-org">全日制大专 · 导游业务 / 旅行社运营 / 旅游政策与法规</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 证书与语言 -->
+  <section id="certificates">
+    <h2>📜 证书与语言</h2>
+    <div class="cert-list">
+      <div class="cert">
+        <div class="ci">🎫</div>
+        <div><div class="ct">全国导游资格证书</div><div class="cd">已持证（编号备查）</div></div>
+      </div>
+      <div class="cert">
+        <div class="ci">🇬🇧</div>
+        <div><div class="ct">英文导游资格证</div><div class="cd">备考中，持续打磨双语讲解能力</div></div>
+      </div>
+      <div class="cert">
+        <div class="ci">🗣️</div>
+        <div><div class="ct">语言能力</div><div class="cd">普通话（母语）· 英语（讲解应用提升中）</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 联系 -->
+  <section id="contact">
+    <h2>📫 联系我</h2>
+    <div class="contact-box">
+      <div class="row">📬 邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a></div>
+      <div class="row">💬 微信：<b>your-wechat-id</b></div>
+      <div class="row">🧳 研学团队带队合作、行程讲解需求，欢迎随时联系。</div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 大顺 · 在线简历 ｜ <a href="/">← 返回博客首页</a> ｜ 更新于 2026.11
+  </footer>
+
+</div>
+</body>
+</html>

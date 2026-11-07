@@ -1,0 +1,21 @@
+{{- /* 文章卡片：日志 / 知识库通用 */ -}}
+{{- $kicker := "文章" -}}
+{{- if eq .Section "logs" }}{{ $kicker = "日志" }}
+{{- else if eq .Section "knowledge" }}{{ $kicker = "知识" }}{{ end -}}
+<article class="card reveal"
+  {{- with .Params.region }} data-region="{{ . }}"{{ end -}}
+  {{- with .Params.tags }} data-tags="{{ delimit . ` ` | lower }}"{{ end -}}>
+  <div class="card-kicker">{{ $kicker }}</div>
+  <h2 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <p class="card-summary">{{ .Summary | plainify | chomp | truncate 78 }}</p>
+  <div class="card-meta">
+    {{- with .Params.spot }}<span class="card-meta-item">{{ partial "icon.html" "mountain" }}{{ . }}</span>
+    {{- else with .Params.location }}<span class="card-meta-item">{{ partial "icon.html" "pin" }}{{ . }}</span>{{ end -}}
+    <span class="card-meta-item card-date">{{ .Date.Format "2006-01-02" }}</span>
+  </div>
+  {{- with .Params.tags }}
+  <div class="card-tags">
+    {{- range . }}<a class="tag-chip" href="{{ printf `/tags/%s` (. | urlize) | relURL }}">#{{ . }}</a>{{ end -}}
+  </div>
+  {{- end }}
+</article>

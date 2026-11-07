@@ -1,0 +1,77 @@
+{{ define "main" }}
+{{/* ---------------- 首屏：青绿山水（取法千里江山图） ---------------- */}}
+<section class="hero">
+  {{/* 背景：王希孟《千里江山图》高清扫描段（北宋，公有领域），长卷徐展 */}}
+  {{- $bg := resources.Get "images/hero-jiangshan.jpg" -}}
+  <div class="hero-painting" style="background-image:url('{{ $bg.RelPermalink }}')" aria-hidden="true"></div>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-title-block">
+      <h1 class="hero-title v-text">{{ site.Title }}</h1>
+      {{ partial "seal.html" (dict "text" "大顺之印" "class" "seal-lg") }}
+    </div>
+    <div class="hero-intro">
+      <p class="hero-sub">{{ site.Params.subtitle }}</p>
+      <p class="hero-note">{{ site.Params.heroNote }}</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="scroll-hint-text v-text">入卷</span>
+    <svg class="scroll-hint-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l8 8 8-8"/></svg>
+  </div>
+</section>
+
+{{/* ---------------- 最新日志 ---------------- */}}
+<section class="home-section">
+  <header class="section-head">
+    <div class="wrap section-head-inner">
+      {{ partial "chapter-seal.html" (dict "char" "行" "size" "lg") }}
+      <div class="section-titles">
+        <h2 class="section-title">日志</h2>
+        <span class="section-sub">山行日记 · 带团的日常</span>
+      </div>
+      <span class="section-en">JOURNAL</span>
+    </div>
+  </header>
+  <div class="wrap card-grid">
+    {{- $logs := where site.RegularPages "Section" "logs" | first 3 }}
+    {{- range $logs }}{{ partial "card.html" . }}{{ end }}
+  </div>
+  <div class="wrap section-more">
+    <a class="btn" href="{{ (site.GetPage `logs`).RelPermalink }}">看全部日志</a>
+  </div>
+</section>
+
+{{/* ---------------- 题字 ---------------- */}}
+<section class="home-quote">
+  <div class="wrap">
+    <blockquote class="quote-block brush-frame reveal">
+      <p class="quote-line">竖划三寸，当千仞之高；横墨数尺，体百里之迥。</p>
+      <footer class="quote-from">—— 宗炳《画山水序》</footer>
+    </blockquote>
+  </div>
+</section>
+
+{{/* ---------------- 知识库 ---------------- */}}
+<section class="home-section">
+  <header class="section-head">
+    <div class="wrap section-head-inner">
+      {{ partial "chapter-seal.html" (dict "char" "识" "size" "lg") }}
+      <div class="section-titles">
+        <h2 class="section-title">知识库</h2>
+        <span class="section-sub">景点 · 历史 · 讲解词素材</span>
+      </div>
+      <span class="section-en">KNOWLEDGE</span>
+    </div>
+  </header>
+  <div class="wrap card-grid">
+    {{- $k := where site.RegularPages "Section" "knowledge" | first 3 }}
+    {{- range $k }}{{ partial "card.html" . }}{{ end }}
+  </div>
+  <div class="wrap section-more">
+    <a class="btn" href="{{ (site.GetPage `knowledge`).RelPermalink }}">进知识库</a>
+  </div>
+</section>
+{{ end }}
