@@ -1011,10 +1011,13 @@ body.nav-open .nav-toggle span:last-child { transform: translateY(-3.5px) rotate
 
 .article-content figure {
   margin: 1.9em auto;
+  text-align: center;
 }
 .article-content figure img {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
   border: 1px solid var(--line);
   border-radius: 4px;
   filter: saturate(.92) contrast(.98) sepia(.05);
